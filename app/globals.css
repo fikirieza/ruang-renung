@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+/* Token Ruang Renung. Sumber: design system "Ruang Renung" (artifact) dan Figma Foundation. */
+@theme {
+  --color-kertas: #ffe4b4;
+  --color-kayu: #86511c;
+  --color-malam: #0f1f61;
+  --color-daun: #57a114;
+  --color-daun-teks: #356a0c;
+  --color-daun-highlight: #9fd36b;
+  --color-semi: #ff8ee1;
+  --color-semi-highlight: #ffd1ff;
+  --color-semi-shade: #d84bb5;
+  --color-semi-outline: #763f93;
+  --color-panas: #fcd000;
+  --color-panas-highlight: #ffff17;
+  --color-panas-shade: #de7c00;
+  --color-panas-outline: #750700;
+  --color-gugur: #ff820c;
+  --color-gugur-shade: #d13400;
+  --color-gugur-highlight: #ffb46a;
+  --color-dingin: #a9f0ff;
+  --color-dingin-shade: #67b7ff;
+
+  --font-pixel: var(--font-pixelify), "Courier New", monospace;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-nunito), system-ui, sans-serif;
+
+  --radius-none: 0px;
+}
+
+/* Warna semantik yang berubah antara Siang dan Malam: bg-page, text-ink, dll. */
+@theme inline {
+  --color-page: var(--bg-page);
+  --color-panel: var(--bg-panel);
+  --color-ink: var(--text-primary);
+  --color-ink-2: var(--text-secondary);
+  --color-link: var(--text-link);
+  --color-line: var(--border-panel);
+}
+
+:root {
+  --bg-page: #ffe4b4;
+  --bg-panel: #fff1d6;
+  --text-primary: #0f1f61;
+  --text-secondary: #86511c;
+  --text-link: #86511c;
+  --text-on-accent: #0f1f61;
+  --border-panel: #86511c;
+  --shadow-ink: #86511c;
+  --accent: #fcd000;
+}
+[data-theme="malam"] {
+  --bg-page: #0f1f61;
+  --bg-panel: #1a2d7a;
+  --text-primary: #ffe4b4;
+  --text-secondary: #e3c99a;
+  --text-link: #fcd000;
+  --border-panel: #c9a06a;
+  --shadow-ink: #050b26;
+}
+
+html, body { background: var(--bg-page); color: var(--text-primary); }
+body { font-family: var(--font-body); }
+
+@layer components {
+  .font-pixel { font-family: var(--font-pixel); -webkit-font-smoothing: none; }
+
+  .kp-btn {
+    --line: var(--color-panas-outline); --fill: var(--color-panas); --hl: var(--color-panas-highlight); --shade: var(--color-panas-shade);
+    font-family: var(--font-pixel); font-size: 18px; line-height: 22px; font-weight: 500; -webkit-font-smoothing: none;
+    color: var(--text-on-accent); background: var(--fill); border: 0; border-radius: 0;
+    padding: 6px 14px; margin: 3px 9px 9px 3px; cursor: pointer; display: inline-block;
+    box-shadow:
+      0 -3px 0 0 var(--line), 0 3px 0 0 var(--line), -3px 0 0 0 var(--line), 3px 0 0 0 var(--line),
+      6px 3px 0 0 var(--shadow-ink), 3px 6px 0 0 var(--shadow-ink);
+    transition: background-color .16s steps(2), transform .08s steps(1);
+  }
+  .kp-btn:hover { background: var(--hl); }
+  .kp-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow:
+      0 -3px 0 0 var(--line), 0 3px 0 0 var(--line), -3px 0 0 0 var(--line), 3px 0 0 0 var(--line),
+      inset 0 4px 0 0 var(--shade);
+  }
+  .kp-btn:focus-visible { outline: 3px dashed var(--text-primary); outline-offset: 6px; }
+  .kp-semi { --line: var(--color-semi-outline); --fill: var(--color-semi); --hl: var(--color-semi-highlight); --shade: var(--color-semi-shade); }
+  .kp-daun { --line: var(--color-daun-teks); --fill: var(--color-daun); --hl: var(--color-daun-highlight); --shade: var(--color-daun-teks); }
+  .kp-panas { --line: var(--color-panas-outline); --fill: var(--color-panas); --hl: var(--color-panas-highlight); --shade: var(--color-panas-shade); }
+  .kp-gugur { --line: var(--color-gugur-shade); --fill: var(--color-gugur); --hl: var(--color-gugur-highlight); --shade: var(--color-gugur-shade); }
+  .kp-dingin { --line: var(--color-malam); --fill: var(--color-dingin); --hl: #e2fbff; --shade: var(--color-dingin-shade); }
+  .kp-polos { --line: var(--border-panel); --fill: var(--bg-panel); --hl: var(--bg-page); --shade: var(--border-panel); color: var(--text-primary); }
+
+  /* Urutan musim: Works semi, Projects panas, Writing gugur, About dingin. Cermin di luar musim: daun. */
+  .is-works { --accent: var(--color-semi); }
+  .is-projects { --accent: var(--color-panas); }
+  .is-writing { --accent: var(--color-gugur); }
+  .is-about { --accent: var(--color-dingin); }
+  .is-cermin { --accent: var(--color-daun); }
+
+  /* Latar halaman ikut warna section. Mode malam: 35% warna musim di atas navy, teks krem tetap terbaca. */
+  .kp-season-bg { background: var(--accent); }
+  [data-theme="malam"] .kp-season-bg { background: color-mix(in srgb, var(--accent) 35%, var(--color-malam)); }
+
+  .kp-box {
+    position: relative; background: var(--bg-panel); color: var(--text-primary); padding: 36px 32px 28px;
+    margin: 3px 9px 9px 3px;
+    box-shadow:
+      0 -3px 0 0 var(--border-panel), 0 3px 0 0 var(--border-panel), -3px 0 0 0 var(--border-panel), 3px 0 0 0 var(--border-panel),
+      6px 3px 0 0 var(--shadow-ink), 3px 6px 0 0 var(--shadow-ink),
+      inset 0 0 0 3px var(--bg-panel), inset 0 0 0 6px var(--border-panel);
+  }
+  .kp-tab {
+    position: absolute; top: -18px; left: 20px; padding: 4px 10px;
+    font-family: var(--font-pixel); font-size: 16px; line-height: 20px; -webkit-font-smoothing: none;
+    color: var(--text-on-accent); background: var(--accent);
+    box-shadow: 0 -3px 0 0 var(--border-panel), 0 3px 0 0 var(--border-panel), -3px 0 0 0 var(--border-panel), 3px 0 0 0 var(--border-panel);
+  }
+  .kp-next { position: absolute; right: 22px; bottom: 18px; width: 12px; height: 8px; background: var(--text-primary); clip-path: polygon(0 0, 100% 0, 50% 100%); animation: kp-blink 1s steps(2) infinite; }
+
+  .kp-badge {
+    display: inline-block; padding: 2px 8px; margin: 3px;
+    font-family: var(--font-pixel); font-size: 16px; line-height: 20px; -webkit-font-smoothing: none;
+    color: var(--text-on-accent); background: var(--accent);
+    box-shadow: 0 -3px 0 0 var(--text-on-accent), 0 3px 0 0 var(--text-on-accent), -3px 0 0 0 var(--text-on-accent), 3px 0 0 0 var(--text-on-accent);
+  }
+  .kp-dither { height: 12px; background: repeating-conic-gradient(var(--border-panel) 0 25%, transparent 0 50%) 0 0 / 6px 6px; }
+}
+
+@keyframes kp-blink { 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .kp-btn { transition: none; }
+  .kp-next { animation: none; }
+}
