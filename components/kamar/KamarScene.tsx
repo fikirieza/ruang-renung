@@ -11,6 +11,7 @@ import { useTheme } from "@/lib/theme";
 import { PixelButton } from "@/components/ui/PixelButton";
 import { Kamar } from "./Kamar";
 import { CameraRig } from "./CameraRig";
+import { ResponsiveCamera } from "./ResponsiveCamera";
 
 const FADE_MS = 380;
 const PIXEL_LONG_SIDE = 420; // resolusi internal sisi terpanjang saat mode PS1
@@ -26,7 +27,6 @@ function useOrbitLimits() {
       minPolarAngle: 0.55,
       maxPolarAngle: Math.min(1.35, s.phi + 0.3),
       minDistance: 4.2,
-      maxDistance: s.radius * 1.15,
     };
   }, []);
 }
@@ -93,6 +93,7 @@ export function KamarScene() {
       >
         <OrbitControls makeDefault target={kameraAwal.target} enabled={!focused} enablePan={false} enableDamping dampingFactor={0.08} rotateSpeed={0.6} {...limits} />
         <Kamar night={theme === "malam"} hovered={hovered} interactive={!focused} onHover={handleHover} onSelect={select} />
+        <ResponsiveCamera active={!focused} />
         <CameraRig focused={focused} onArrive={onArrive} />
       </Canvas>
 

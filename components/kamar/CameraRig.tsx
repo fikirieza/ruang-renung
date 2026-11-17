@@ -36,7 +36,7 @@ export function CameraRig({ focused, onArrive }: { focused: SectionKey | null; o
       f0: camera.fov,
       p1: new THREE.Vector3(...f.eye).applyMatrix4(m),
       t1: new THREE.Vector3(...f.look).applyMatrix4(m),
-      f1: kameraAwal.fov - FOV_DROP,
+      f1: camera.fov - FOV_DROP,
       start: performance.now(),
       ms: reduce ? 1 : DURATION_MS,
     };
