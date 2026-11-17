@@ -120,6 +120,10 @@ export function KamarScene() {
       <p className="font-pixel absolute right-6 bottom-7 hidden text-right text-sm text-ink-2 md:block">
         Geser untuk memutar · scroll untuk zoom · klik barang
       </p>
+      {/* Versi layar sentuh: di atas tombol toggle supaya tidak bertabrakan */}
+      <p className="font-pixel pointer-events-none absolute inset-x-5 bottom-24 text-center text-sm text-ink-2 md:hidden">
+        Geser untuk memutar · cubit untuk zoom · ketuk barang
+      </p>
 
       <div
         ref={tipRef}
