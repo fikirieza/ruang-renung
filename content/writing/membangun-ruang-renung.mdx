@@ -1,0 +1,85 @@
+Aku sudah lama ingin punya website sendiri. Bukan sekadar daftar karya, tapi satu tempat yang isinya semua hal yang aku suka: desain, aplikasi yang pernah kubangun, tulisan, sampai review buku dan parfum. Masalahnya, setiap kali mulai, hasilnya selalu terasa seperti template portofolio kebanyakan.
+
+Kali ini aku mencoba cara berbeda. Aku memperlakukan AI sebagai rekan kerja, lalu membangun website ini dari nol sampai online. Tulisan ini catatan prosesnya, termasuk kesalahan yang justru paling banyak mengajariku.
+
+## Mulai dari rasa, bukan dari layout
+
+Pertanyaan pertama yang kujawab bukan "pakai template apa", tapi "aku ingin orang merasakan apa saat membuka website ini?".
+
+Jawabanku: nyaman. Lalu aku sadar rasa nyaman itu sudah lama kukenal dari game bertani yang kumainkan, dari Harvest Moon di PS1 sampai Stardew Valley. Pagi di kebun, rumah kayu, warna yang hangat.
+
+Tapi aku tidak mau websiteku jadi fan page. Jadi aturannya jelas sejak awal: nuansanya tersirat. Tidak ada sprite, karakter, logo, atau font dari game mana pun. Yang kuambil hanya prinsipnya:
+
+- palet warna hangat yang terasa seperti kertas, kayu, dan senja,
+- empat musim sebagai sistem warna untuk tiap bagian website,
+- siklus siang dan malam sebagai tema terang dan gelap,
+- tipografi pixel sebagai aksen, bukan untuk semua teks.
+
+## Kesalahan paling berharga: warna jerami
+
+Untuk mencari warna, aku mengambil gambar jerami dari referensi lalu memakai color picker. Hasilnya #FFFF14, kuning neon yang hampir menyilaukan. Aku sempat bingung kenapa paletnya terasa jauh dari "nyaman".
+
+Ternyata color picker menangkap piksel paling terang di gambar itu. Pixel art tidak dibuat dari satu warna, tapi dari satu deretan warna, dari highlight sampai outline. Saat piksel-pikselnya dihitung, warna yang paling banyak menutupi bidang justru #FCD000.
+
+<SwatchRow>
+  <Swatch hex="#FFFF14" label="Highlight" catatan="Yang tertangkap color picker" />
+  <Swatch hex="#FCD000" label="Warna dasar" catatan="Yang sebenarnya dilihat mata" />
+  <Swatch hex="#DE7C00" label="Bayangan" />
+  <Swatch hex="#750700" label="Outline" />
+</SwatchRow>
+
+> Mata kita membaca warna dari bidang yang paling luas, bukan dari titik yang paling mencolok.
+
+Kesalahan yang sama terulang di warna musim panas dan musim gugur, karena mataku selalu tertarik ke matahari kecil dan bayangan merah. Setelah tahu polanya, aku malah menemukan ide yang sekarang jadi ciri khas website ini: deretan warna pixel art kupakai untuk state tombol. Warna dasar untuk kondisi normal, highlight saat disorot, bayangan saat ditekan, dan outline untuk garis tepi. Kuning neon tadi tetap terpakai, hanya sebagai kilau kecil saat hover.
+
+Aku juga belajar memeriksa kontras di setiap pasangan warna. Navy di atas krem punya rasio 12:1, jadi itu yang kupakai untuk teks utama. Kuning di atas krem hanya sekitar 1:1, jadi kuning cukup jadi isian, bukan teks.
+
+## Design system dulu, halaman kemudian
+
+Sebelum mendesain satu halaman pun, semua keputusan tadi kukumpulkan jadi design system yang kunamai Ruang Renung: warna untuk tema Siang dan Malam, tipografi, spasi, dan komponen seperti tombol pixel, kotak dialog ala RPG, label musim, dan garis pemisah bermotif dither.
+
+Versi awalnya ternyata masih terlalu "rapi". Sudutnya membulat dan bayangannya halus. Begitu aku minta nuansa pixel-nya dipertegas, semua sudut berubah jadi kotak, border jadi tebal 3 piksel, bayangan jadi bertangga tanpa blur, dan animasi berubah per frame seperti sprite. Perubahan kecil, tapi rasanya langsung berbeda.
+
+## Kamar sebagai pintu masuk
+
+Bagian paling seru adalah halaman depannya. Pengunjung langsung disambut kamar 3D bergaya voxel yang bisa diputar. Setiap barang adalah pintu:
+
+1. meja kerja membawa ke karya,
+2. papan tulis ke project yang sedang berjalan,
+3. rak buku ke tulisan seperti yang sedang kamu baca,
+4. lemari ke halaman tentang aku,
+5. cermin nanti akan jadi generator pixel art.
+
+Empat pintu pertama mengikuti urutan musim: semi, panas, gugur, dingin. Latar halaman tujuannya ikut berwarna musim itu, dan layar memudar ke warna yang sama saat berpindah, jadi transisinya terasa menyatu.
+
+Ada satu pelajaran teknis yang membuatku kagum. Model voxel kamarnya awalnya sekitar 5,2 MB karena setiap sisi kubus kecil disimpan sendiri-sendiri. Dengan menggabungkan sisi yang sebidang dan sewarna, ukurannya turun jadi sekitar 30 KB tanpa mengubah tampilannya sedikit pun.
+
+## Membagi kerja dengan AI
+
+Website ini kubangun dengan beberapa AI yang punya peran berbeda:
+
+- Claude di chat jadi mentor dan perancang. Di sana aku berdiskusi soal konsep, warna, struktur halaman, dan menulis sebagian besar kode awal.
+- Claude Code bekerja langsung di laptopku untuk tugas yang perlu menjalankan perintah atau membuka file Figma.
+- Figma tetap jadi tempat dokumentasi. Design system, peta interaksi kamar, dan catatan teknisnya kusimpan di sana.
+
+Kerja seperti ini tidak selalu mulus. Kuota tool Figma di paket gratis sempat habis di tengah jalan, jadi tugasnya kuoper ke Claude Code dengan brief tertulis. Dari situ aku belajar menulis instruksi yang jelas dan bisa dicek: apa yang harus dikerjakan, di file mana, dan bagaimana hasilnya dilaporkan.
+
+Yang paling penting, AI tidak mengambil keputusan desain untukku. Aku tetap yang memilih kuning terik untuk musim panas walaupun disarankan warna lain, karena aku ingin musimnya terasa jelas. Aku juga yang memutuskan semua review cukup disatukan di rak buku. AI mempercepat pekerjaan, tapi arah dan alasannya tetap harus datang dari aku.
+
+## Online, lalu langsung diuji
+
+Begitu website online di Vercel, aku membukanya di HP dan dua masalah langsung muncul. Pertama, kamarnya terpotong di layar HP yang berdiri. Kamera 3D mengatur pandangan berdasarkan tinggi layar, jadi di layar sempit bagian kiri dan kanan hilang. Solusinya, kamera dimundurkan dan sudut pandangnya dilebarkan khusus untuk layar sempit.
+
+Kedua, petunjuk cara memakai kamar tidak muncul di HP. Kata-katanya juga perlu diganti, karena di layar sentuh tidak ada scroll atau klik, yang ada geser, cubit, dan ketuk.
+
+Dua hal kecil, tapi tidak akan ketemu kalau aku hanya mengetes di laptop.
+
+## Yang aku bawa pulang
+
+- Rasa lebih dulu, layout kemudian. Keputusan visual jadi lebih mudah saat tujuan rasanya jelas.
+- Lihat warna dari bidang terluas, bukan dari titik paling mencolok.
+- Design system di awal menghemat banyak keputusan di belakang.
+- AI paling berguna saat aku jelas soal apa yang kuinginkan dan kenapa.
+- Rilis lebih awal, lalu uji di perangkat sungguhan.
+
+Ruang Renung masih akan terus tumbuh. Rak buku ini nanti akan berisi review buku dan parfum, lalu cermin di kamar akan bisa mengubah foto jadi pixel art. Kalau kamu punya saran, pintu lemari di kamar selalu terbuka.
