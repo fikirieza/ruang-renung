@@ -36,8 +36,14 @@ export const tools: string[] = ["Figma", "Claude Code", "React", "Tailwind CSS",
 
 export type Langkah = { waktu: string; judul: string; tempat: string; isi: string };
 
-// Hanya yang sudah pasti. Tambahkan pengalaman lain di sini setelah dicek ulang dengan CV.
+// Samakan dengan CV setiap kali ada perubahan.
 export const perjalanan: Langkah[] = [
+  {
+    waktu: "2019 – sekarang",
+    judul: "UI Designer & Frontend Developer (Freelance)",
+    tempat: "PT. Anugerah Dwijaya Logistics",
+    isi: "Merancang dan mengembangkan aplikasi manajemen logistik. Aplikasi surat jalan digital dan pelacakan pengiriman dibangun sebagai proyek kerja praktik di sini.",
+  },
   {
     waktu: "2018 – 2019",
     judul: "UI Designer & Web Developer",

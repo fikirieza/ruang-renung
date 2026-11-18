@@ -52,7 +52,7 @@ export const works: Work[] = [
     subtitle: "Surat jalan digital dan pelacakan pengiriman",
     jenis: ["UI/UX", "Frontend", "Full-stack"],
     peran: "Desain dan pengembangan, dikerjakan sendiri",
-    konteks: "Kerja praktik di PT. Anugerah Dwijaya Logistics",
+    konteks: "Proyek kerja praktik di PT. Anugerah Dwijaya Logistics, tempat aku bekerja sebagai freelancer sejak 2019",
     stack: ["Figma", "Laravel 13", "Inertia", "React 19", "Tailwind CSS v4", "Leaflet", "PWA"],
     status: "Sudah diserahkan ke perusahaan. Keputusan pemakaiannya ada di direksi dan tim IT mereka.",
     cover: { src: `${ADL}/cover.png`, alt: "Dashboard admin di desktop serta aplikasi admin dan driver di HP", w: 3200, h: 2000 },
